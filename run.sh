@@ -14,12 +14,11 @@ dhlasia(){
 }
 
 trackasia(){
-    #fileasiatrack="./asia.track"
-        #while IFS= read -r traceid
-        while read -r traceid
-           do
+    fileasiatrack="./asia.track"
+        while IFS= read -r traceid
+            do
                 dhlasia
-    done <"./asia.track"
+    done <"$fileasiatrack"
 }
 
 [ -f confirm.log ] || intro
