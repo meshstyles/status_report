@@ -67,4 +67,3 @@ trackde(){
 [ -f confirm.log ] || intro
 [ -f de.track ] && trackde
 [ -f asia.track ] && trackasia
-wget "https://opendata.dwd.de/weather/webcam/Offenbach-W/Offenbach-W_latest_full.jpg"
