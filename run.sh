@@ -9,23 +9,16 @@ intro(){
 }
 
 dhlasia(){
-    #package=$(curl -X GET "https://api-eu.dhl.com/track/shipments?trackingNumber=$traceid&service=ecommerce&language=en&limit=25" -H "accept: application/json" -H "DHL-API-Key: demo-key")
+    package=$(curl -X GET "https://api-eu.dhl.com/track/shipments?trackingNumber=$traceid&service=ecommerce&language=en&limit=25" -H "accept: application/json" -H "DHL-API-Key: demo-key")
     echo $package| jq '.'
 }
 
 trackasia(){
-    loc="RX256979819DE"
     #fileasiatrack="./asia.track"
         #while IFS= read -r traceid
         while read -r traceid
            do
-                urla="https://api-eu.dhl.com/track/shipments?trackingNumber="
-                urlb="&service=ecommerce&language=en"
-                url="${urla}${traceid}${urlb}"
-                echo $url
-                url="${urla}${loc}${urlb}"
-                echo $url
-                #dhlasia
+                dhlasia
     done <"./asia.track"
 }
 
