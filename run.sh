@@ -9,7 +9,7 @@ intro(){
     echo "if you found this please keep it so you don't have to see the intro again" > confirm.log
 }
 
-setenv(){
+keyset(){
     dhlkey=$(cat settings.json | jq -r '.dhl')
     openweatherkey=$(cat settings.json | jq -r '.openWeather')
     weatherloc=$(cat settings.json| jq -r '.weatherLoc')
@@ -94,7 +94,7 @@ openweather(){
 }
 
 [ -f confirm.log ] || intro
-[ -f settings.json ] && setenv
+[ -f settings.json ] && keyset
 #[ -f de.track ] && trackde
 #[ -f asia.track ] && trackasia
 #openweather
