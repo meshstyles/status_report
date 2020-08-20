@@ -95,6 +95,7 @@ openweather(){
 
 [ -f confirm.log ] || intro
 [ -f settings.json ] && setenv
-[ -f de.track ] && trackde
-[ -f asia.track ] && trackasia
-openweather
+#[ -f de.track ] && trackde
+#[ -f asia.track ] && trackasia
+#openweather
+./ny.sh
