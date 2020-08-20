@@ -5,7 +5,6 @@ intro(){
     echo "# please make sure to run this script in it's own folder #"
     echo "#    confirm by writing something on the command line    #"
     echo "##########################################################"
-    read
     echo "if you found this please keep it so you don't have to see the intro again" > confirm.log
 }
 
@@ -88,6 +87,7 @@ openweather(){
     maxtemp=$tmp
     humidity=$(echo $weather | jq -r '.main.humidity')
     cloudiness=$(echo $weather | jq -r '.weather[0].description')
+    echo ""
     echo "temperature ${temp}C (min: ${mintemp}C | max: ${maxtemp}C )"
     echo "humidity: ${humidity}%"
     echo "weather: ${cloudiness}"
@@ -95,7 +95,6 @@ openweather(){
 
 [ -f confirm.log ] || intro
 [ -f settings.json ] && keyset
-#[ -f de.track ] && trackde
-#[ -f asia.track ] && trackasia
-#openweather
-./ny.sh
+[ -f de.track ] && trackde
+[ -f asia.track ] && trackasia
+openweather
