@@ -3,9 +3,9 @@ reporting in the status of things.
 
 ## usecase
 - dhl tracking
+- weather
 
 ## planned
-- weather
 - news
 
 # useage
