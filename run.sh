@@ -69,6 +69,28 @@ trackde(){
     done <"$filedetrack"
 }
 
+sypost(){
+    package=$(curl -s "https://www.sypost.net/queryTrack?toLanguage=en_US&trackNumber=${traceid}")
+    package=$( echo $package | sed 's/searchCallback(//g' | sed 's/})/}/g' | jq '.data[0]')
+    statusCode=$(echo $package | jq -r '.lastContent')
+    timestamp=$(echo $package | jq -r '.lastUpdate')
+    timestamp=$(echo "${timestamp%*000*}")
+    timestamp=$(date -d @$timestamp)
+    service="SunYou Logistic"
+    status=" "
+    location="null"
+    printpaket
+}
+
+tracksypost(){
+    filesypostrack="./sypost.track"
+        while IFS= read -r traceid
+           do
+               traceid=$(echo $traceid | tr -d '\n')
+               sypost
+    done<"$filesypostrack"
+}
+
 toCelcius(){
     tmp=$(echo "${1%.*}")
     tmp=$(expr $tmp - 273)
@@ -97,4 +119,5 @@ openweather(){
 [ -f settings.json ] && keyset
 [ -f de.track ] && trackde
 [ -f asia.track ] && trackasia
+[ -f sypost.track ] && tracksypost
 openweather
