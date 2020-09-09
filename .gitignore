@@ -4,3 +4,4 @@
 *.html
 *.track
 settings.json
+experiments/

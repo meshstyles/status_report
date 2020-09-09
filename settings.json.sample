@@ -1,5 +1,7 @@
 {
     "dhl":"key",
+    "nyt":"key",
+    "nytStoryLength":5,
     "openWeather":"key",
     "weatherLoc":"London,uk"
 }
