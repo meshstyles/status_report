@@ -11,7 +11,7 @@ reporting in the status of things.
 
 # useage
 
-# how to run
+## how to run
 - install dependencies (on debian or debian based distros you can use setup.sh)
 - run runner.sh
 
