@@ -91,6 +91,25 @@ tracksypost(){
     done<"$filesypostrack"
 }
 
+orangeconnex(){
+    package=$(curl -s -X POST -d "{\"trackingNumbers\":[\"${traceid}\"]}" -H 'Content-Type: application/json' https://azure-cn.orangeconnex.com/oc/capricorn-website/website/v1/tracking/traces)
+    package=$(echo $package | jq ".result.waybills[0]" )
+    statusCode=$(echo $package | jq ".lastStatus")
+    timestamp=$(echo $package | jq ".lastTime")
+    service="orangeconnex"
+    status=$(echo $package | jq ".lastPosition")
+    location="null"
+    printpaket
+}
+
+trackocebay(){
+    fileoctrack="./oc.track"
+        while IFS= read -r traceid
+           do
+                orangeconnex
+    done<"$fileoctrack"
+}
+
 toCelcius(){
     tmp=$(echo "${1%.*}")
     tmp=$(expr $tmp - 273)
@@ -115,9 +134,12 @@ openweather(){
     echo "weather: ${cloudiness}"
 }
 
+echo "==End news=="
+echo ""
 [ -f confirm.log ] || intro
 [ -f settings.json ] && keyset
 [ -f de.track ] && trackde
 [ -f asia.track ] && trackasia
 [ -f sypost.track ] && tracksypost
+[ -f oc.track ] && trackocebay
 openweather
